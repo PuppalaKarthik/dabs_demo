@@ -1,0 +1,14 @@
+# The main pipeline for databricks_dabs
+resources:
+  pipelines:
+    databricks_dabs_pipeline:
+      name: databricks_dabs_pipeline
+      catalog: workspace
+      schema: databricks_dabs_${bundle.target}
+      serverless: true
+      libraries:
+        - notebook:
+            path: ../src/pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
